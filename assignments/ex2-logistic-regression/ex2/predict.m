@@ -16,13 +16,7 @@ p = zeros(m, 1);
 %
 
 predictions = sigmoid(X * theta);
-for i=1:m
-    if predictions(i) >= 0.5
-        p(i) = 1;
-    else
-        p(i) = 0;
-    end
-end
+p = predictions >= 0.5;
 
 % =========================================================================
 

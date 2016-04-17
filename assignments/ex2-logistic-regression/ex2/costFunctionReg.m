@@ -18,19 +18,11 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 predications = sigmoid(X * theta);
 cost_items = (y .* log(predications)) + (1 - y) .* log(1 - predications);
-reg_items = theta .^ 2;
 % don't penalize theta0
-sum_reg_items = sum(reg_items) - reg_items(1);
-J = (-1 / m) * sum(cost_items) + (lambda / (2 * m)) * sum_reg_items;
-
-partial_derivative_items = (1 / m) * sum((predications - y) .* X)';
-% don't penalize theta0, so grad(1) for theta0 is as before
-grad(1) = partial_derivative_items(1);
-n = size(theta, 1);
-for j = 2:n
-    grad(j) = partial_derivative_items(j) + (lambda / m) * theta(j);
-end
-
+reg_theta = [0; theta(2:length(theta))];
+J = (-1 / m) * sum(cost_items) + (lambda / (2 * m)) * sum(reg_theta .^2);
+%grad = (1 / m) * sum((predications - y) .* X)' + (lambda / m) * penalize_theta;
+grad = (1 / m) * X' * (predications - y) + (lambda / m) * reg_theta;
 
 % =============================================================
 
