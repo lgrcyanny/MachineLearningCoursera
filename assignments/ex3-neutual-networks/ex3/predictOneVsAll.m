@@ -35,11 +35,6 @@ predictions = X * all_theta';
 [max_predictions, p] = max(predictions, [], 2);
 
 
-
-
-
-
-
 % =========================================================================
 
 
