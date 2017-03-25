@@ -16,13 +16,13 @@ grad = zeros(size(theta));
 %               You should set J to the cost.
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
-predications = sigmoid(X * theta);
-cost_items = (y .* log(predications)) + (1 - y) .* log(1 - predications);
+hypothesis = sigmoid(X * theta);
+cost_items = (y .* log(hypothesis)) + (1 - y) .* log(1 - hypothesis);
 % don't penalize theta0
 reg_theta = [0; theta(2:length(theta))];
-J = (-1 / m) * sum(cost_items) + (lambda / (2 * m)) * sum(reg_theta .^2);
+J = (-1 / m) * sum(cost_items) + (lambda / (2 * m)) * sum(reg_theta .^ 2);
 %grad = (1 / m) * sum((predications - y) .* X)' + (lambda / m) * penalize_theta;
-grad = (1 / m) * X' * (predications - y) + (lambda / m) * reg_theta;
+grad = (1 / m) * (X' * (hypothesis - y)) + (lambda / m) * reg_theta;
 
 % =============================================================
 

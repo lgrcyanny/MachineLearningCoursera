@@ -20,11 +20,12 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 % Predications: h_theta(x)
-predications = sigmoid(X * theta);
-cost_items = y .* log(predications) + (1 - y) .* log(1 - predications);
+hypothesis = sigmoid(X * theta);
+cost_items = y .* log(hypothesis) + (1 - y) .* log(1 - hypothesis);
 J = (-1 / m) * sum(cost_items);
 
-grad = (1 / m) * sum((predications - y) .* X, 1)';
+% grad = (1 / m) * sum((predications - y) .* X, 1)';
+grad = (1 / m) * (X' * (hypothesis - y));
 
 % =============================================================
 
