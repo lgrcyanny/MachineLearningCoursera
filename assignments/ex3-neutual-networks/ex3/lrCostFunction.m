@@ -43,7 +43,4 @@ J = (-1 / m) * sum((y .* log(predictions) + (1 - y) .* log(1 - predictions))) + 
 grad = (1 / m) * (X' * (predictions - y)) + (lambda / m) * reg_theta;
 
 % =============================================================
-
-% grad = grad(:);
-
 end
